@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leave A Rating</title>
+	<style>
+		body {
+			background-color: #f7f7f7;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			background-color: #0057a7;
+			color: white;
+			font-size: 32px;
+			padding: 20px;
+			margin: 0;
+			text-align: center;
+			text-shadow: 1px 1px #666;
+		}
+		table {
+			border-collapse: collapse;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			margin: 50px auto;
+			width: 80%;
+		}
+		th, td {
+			padding: 12px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #0057a7;
+			color: white;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		select, input[type="text"] {
+			width: 100%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #f2f2f2;
+		}
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+         #redirect-button {
+      background-color: #3e8e41;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    #redirect-button:hover {
+      background-color: #00467a;
+    }
+	</style>
+</head>
+<body>
+
+	<h1>Leave a Rating</h1>
+    <button id="redirect-button" onclick="window.location.href='/gohome';">Go Home</button>
+	<table>
+		<thead>
+			<tr>
+				<th>Email Address</th>
+				<th>Rating</th>
+				<th>Description</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for email in emails %}
+			<tr>
+				<td>{{ email }}</td>
+				<td>
+					<form action="{{ url_for('rating_left') }}" method="post">
+						<input type="hidden" name="email" value="{{ email }}">
+						<select name="rating">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3" selected>3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+				</td>
+				<td>
+						<input type="text" name="description" placeholder="Leave a description...">
+				</td>
+				<td>
+						<input type="submit" value="Rate">
+					</form>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+</body>
+</html>
+
+
+

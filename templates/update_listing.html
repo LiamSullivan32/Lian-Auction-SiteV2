@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Auction Listing</title>
+  <style>
+    /* Add CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+    }
+    form {
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input, select, textarea {
+      margin-bottom: 10px;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <h1>Update Auction Listing</h1>
+  <form method="POST" action="/update/{{ product_info[1] }}">
+
+
+
+
+<label for="category">Category:</label>
+<select id="category" name="category" required>
+  <option value="{{ product_info[2] }}">Select a category</option>
+  {% for category in categories %}
+  <option value="{{ category }}">{{ category }}</option>
+  {% endfor %}
+</select>
+
+<label for="auction-title">Auction Title:</label>
+<input type="text" id="auction-title" name="auction-title" value="{{ product_info[3] }}" required>
+
+<label for="product-name">Product Name:</label>
+<input type="text" id="product-name" name="product-name" value="{{ product_info[4] }}" required>
+
+<label for="product-description">Product Description:</label>
+<textarea id="product-description" name="product-description" value="{{ product_info[5] }}" required></textarea>
+
+<label for="quantity">Quantity:</label>
+<input type="number" id="quantity" name="quantity" value="{{ product_info[6] }}" required>
+
+<label for="reserve-price">Reserve Price:</label>
+<input type="text" id="reserve-price" name="reserve-price" value="{{ product_info[7] }}" required>
+
+<label for="max-bids">Max Bids:</label>
+<input type="number" id="max-bids" name="max-bids" value={{ product_info[8] }} required>
+
+<button type="submit">Update Listing</button>
+
+   </form>
+</body>
+</html>

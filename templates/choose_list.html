@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Choose a Listing Type</title>
+	<style>
+		body {
+			background-color: #f7f7f7;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			background-color: #0057a7;
+			color: white;
+			font-size: 32px;
+			padding: 20px;
+			margin: 0;
+			text-align: center;
+			text-shadow: 1px 1px #666;
+		}
+		form {
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			margin: 50px auto;
+			width: 80%;
+			padding: 20px;
+			border-radius: 5px;
+			background-color: #fff;
+		}
+		label {
+			font-size: 24px;
+			font-weight: bold;
+			display: block;
+			margin-bottom: 10px;
+			color: #0057a7;
+		}
+		select {
+			width: 100%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #f2f2f2;
+			font-size: 18px;
+			color: #333;
+			margin-bottom: 20px;
+		}
+		button[type="submit"] {
+			background-color: #0057a7;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+			font-size: 18px;
+		}
+		button[type="submit"]:hover {
+			background-color: #003366;
+		}
+	</style>
+</head>
+<body>
+<h1>Choose a Listing Type</h1>
+<button id="redirect-button" onclick="window.location.href='/gohome';">Go Home</button>
+<form method="GET" action="/choose_listing_type">
+	<label for="listing-type">Choose a Listing Type:</label>
+	<select id="listing-type" name="listing-type">
+		<option value="active">Active</option>
+		<option value="deactivated">Deactivated</option>
+		<option value="completed">Completed</option>
+	</select>
+	<button type="submit">Submit</button>
+</form>
+</body>
+</html>
+

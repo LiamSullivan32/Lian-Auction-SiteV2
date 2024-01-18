@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Credit Card</title>
+  <style>
+    /* Add CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+    form {
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    label {
+      display: inline-block;
+      width: 120px;
+      text-align: right;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    select, input[type="text"], textarea {
+      margin-bottom: 10px;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      width: 250px;
+      font-size: 16px;
+    }
+    select:focus, input[type="text"]:focus, textarea:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+    select option[value=""] {
+      color: gray;
+    }
+    input[type="submit"] {
+      margin-left: 130px;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    input[type="submit"]:hover {
+      background-color: #0062cc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Credit Card</h1>
+  <button id="redirect-button" onclick="window.location.href='/gohome';">Go Home</button>
+  <form method="POST" action='/complete_transaction/{{ product_info[1] }}/{{ bid_price }}'>
+    <div>
+      <label for="card_type">Use an existing card:</label>
+      <select id="card_type" name="card_type">
+        <option value="">--Select a Card Type--</option>
+        {% for card_type in card_types %}
+        <option value="{{ card_type[0] }}">{{ card_type[0] }}</option>
+        {% endfor %}
+      <input type="submit" value="Use Existing Card">
+      </select>
+    </div>
+    <div>
+      <label for="credit_card_num">Credit Card Number:</label>
+      <input type="tel" id="credit_card_num" name="credit_card_num" >
+    </div>
+    <div>
+      <label for="expire_month">Expiration Month:</label>
+      <input type="text" id="expire_month" name="expire_month">
+    </div>
+    <div>
+      <label for="expire_year">Expiration Year:</label>
+      <input type="text" id="expire_year" name="expire_year">
+    </div>
+    <div>
+      <label for="security_code">Security Code:</label>
+      <input type="text" id="security_code" name="security_code">
+    </div>
+    <div>
+      <input type="submit" value="Add Credit Card">
+    </div>
+  </form>
+</body>
+</html>

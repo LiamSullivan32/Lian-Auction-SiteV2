@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>List of Bid Prices</title>
+      <style>
+
+
+
+          body {
+        background-color: rgb(243, 239, 239);
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        text-align: center;
+        color: #444;
+        font-size: 36px;
+        margin-top: 50px;
+      }
+
+      form {
+        margin: 0 auto;
+        max-width: 600px;
+        background-color: #fff;
+        border: 1px solid #0747e5;
+        border-radius: 5px;
+        padding: 30px;
+        box-shadow: 0px 0px 10px #ccc;
+      }
+
+      label {
+        display: block;
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 10px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+      }
+
+      input [type="submit"] {
+        background-color: #0747e5;
+        color: #100000;
+        font-size: 16px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #ffffff;
+      }
+body {
+            font-family: Arial, sans-serif;
+         }
+         h1 {
+            color: #333;
+            text-align: center;
+            font-size: 32px;
+         }
+
+         h2 {
+
+             color: #333;
+            text-align: left;
+            font-size: 16px;
+         }
+         .navbar {
+
+            background-color: #333;
+            overflow: hidden;
+         }
+         .navbar a {
+            float: left;
+            color: #6078af;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+         }
+         .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+         }
+         .navbar a.active {
+            background-color: #1d2e58;
+            color: white;
+         }
+         .panel {
+            position: fixed;
+            top: 250px;
+            bottom: 50px;
+            right: 20px;
+            background-color: #ffffff;
+            border: 1px solid #100000;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: left;
+         }
+         p {
+            color: #333;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            font-weight: bold;
+         }
+         .product-name {
+            color: #100000;
+         }
+         .product-description {
+            color: #100000;
+         }
+         .product-quantity {
+            color: #100000;
+         }
+         table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #817b7b;
+            border: 1px solid #817b7b;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #100000;
+         }
+         th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+         }
+         th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+         }
+
+         #auction-over {
+            position: fixed;
+            font-size: 48px;
+            color: #6d74da;
+            text-shadow: 0px 0px 10px #aaa;
+         }
+
+
+        .popup {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* The actual popup */
+    .popup .popuptext {
+      visibility: hidden;
+      width: 160px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -80px;
+    }
+ #redirect-button {
+      background-color: #3e8e41;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    #redirect-button:hover {
+      background-color: #00467a;
+    }
+
+    .popup .popuptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+      </style>
+   </head>
+   <body>
+   {% if product_info[9]==1 %}
+         <button id="redirect-button" onclick="window.location.href='/gohome';">Go Home</button>
+         <h1>{{ product_info[3] }}</h1>
+
+      <div class="navbar">
+         <a class="active" href="/contact/{{ product_info[1] }}">Contact</a>
+          <a class="active" href="/bid/{{ product_info[1] }}">Place Bid</a>
+
+      </div>
+       {% if seller_email %}
+           <p>{{  product_info[0] }}</p>
+           {% endif %}
+         <div class="panel">
+            <h2>Product Name </h2>
+            <p class="product-name">{{ product_info[4] }}</p>
+             <h2>Product Description</h2>
+            <p class="product-description">{{ product_info[5] }}</p>
+             <h2>Product Quantity</h2>
+            <p class="product-quantity">{{ product_info[6] }}</p>
+         <h2>Seller Rating</h2>
+         <p class="rating">{{ rating }}</p>
+         </div>
+        <p>{{ message }}</p>
+         <table>
+            <thead>
+               <tr>
+                  <th>Bid Prices</th>
+               </tr>
+            </thead>
+            <tbody>
+               {% for price in bids %}
+               <tr>
+                  <td>{{ price[0] }}</td>
+               </tr>
+               {% endfor %}
+            </tbody>
+         </table>
+
+        {% if bid %}
+
+    <form method="POST">
+      <label for="bid-price">Enter Bid Price:</label>
+      <input type="number" id="bid-price" name="bid-price" required>
+      <input type="submit" value="Submit Bid">
+    </form>
+        {% endif %}
+      {% else %}
+
+         <div id="auction-over">Auction Over</div>
+       <p>{{ message2 }}</p>
+      {% endif %}
+
+
+
+   </body>
+</html>
+
+

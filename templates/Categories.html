@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Hierarchy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            margin: 40px 0 20px 0;
+        }
+
+        nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav button {
+            display: inline-block;
+            width: 175px;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 8px 12px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        nav button:hover {
+            text-decoration: none;
+            background-color: #eee;
+        }
+
+        .go-back {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .go-back:hover {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category Hierarchy</h1>
+    <nav>
+        {% for category, subcategories in categories.items() %}
+            <button onclick="getSubcategories('{{ category[0] }}')">{{ category[0] }}</button>
+        {% endfor %}
+    </nav>
+
+    <a href="/goback" class="back-button" onclick="goBack()">Go Back</a>
+    <script>
+        function getSubcategories(selectedCategory) {
+            document.getElementById('selected_category').value = selectedCategory;
+            document.getElementById('category_form').submit();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <form id="category_form" method="post" action="/categories">
+        <input type="hidden" id="selected_category" name="selected_category" value="">
+    </form>
+
+    {% with listings = listings %}
+    {% include 'Product_listing.html' %}
+    {% endwith %}
+
+</body>
+</html>

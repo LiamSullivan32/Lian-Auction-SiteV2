@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Profile</title>
+<style>
+		body {
+			background-color: #f7f7f7;
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			background-color: #0057a7;
+			color: white;
+			font-size: 32px;
+			padding: 20px;
+			margin: 0;
+			text-align: center;
+			text-shadow: 1px 1px #666;
+		}
+		table {
+			border-collapse: collapse;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			margin: 50px auto;
+			width: 80%;
+		}
+		th, td {
+			padding: 12px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #0057a7;
+			color: white;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		select, input[type="text"] {
+			width: 20%;
+            left: 100px;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #e6e6e6;
+            margin-bottom: 10px;
+		}
+        input[type="submit"] {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			cursor: pointer;
+			border-radius: 5px;
+			transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+		}
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+  <h1>Create Profile</h1>
+  <button id="redirect-button" onclick="window.location.href='/';">Back to Login Screen</button>
+
+  <div>
+     <form method="POST" action="/seller_create">
+      <select id="user-type" name="user-type">
+        <option value="bidder">Bidder</option>
+        <option value="seller">Seller</option>
+        <option value="helpdesk">Helpdesk</option>
+      </select>
+      <button type="submit">Change User Type</button>
+    </form>
+      </div>
+  <form method="POST">
+
+      <div>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email">
+    </div>
+    <div>
+      <label for="first_name">First Name:</label>
+      <input type="text" id="first_name" name="first_name">
+    </div>
+    <div>
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" name="last_name">
+    </div>
+       <div>
+      <label for="password">Password:</label>
+      <input type="text" id="password" name="password">
+    </div>
+  <div>
+      <label for="age">Age:</label>
+      <input type="text" id="age" name="age">
+    </div>
+    <div>
+
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div>
+      <label for="major">Major:</label>
+      <input type="text" id="major" name="major">
+    </div>
+    <div>
+      <label for="zipcode">Zip Code:</label>
+      <input type="text" id="zipcode" name="zipcode">
+    </div>
+    <div>
+      <label for="street_name">Street Name:</label>
+      <input type="text" id="street_name" name="street_name">
+    </div>
+    <div>
+      <label for="street_num">Street Number:</label>
+      <input type="text" id="street_num" name="street_num">
+    </div>
+
+
+      {% if seller %}
+      <div>
+      <label for="bank_routing_num">Bank Routing Number:</label>
+      <input type="text" id="bank_routing_num" name="bank_routing_num">
+    </div>
+      <div>
+      <label for="bank_account_num">Bank Account Number:</label>
+      <input type="text" id="bank_account_num" name="bank_account_num">
+    </div>
+      <div>
+      <label for="balanace">Balance:</label>
+      <input type="text" id="balance" name="balance">
+    </div>
+{% endif %}
+      <div>
+      <input type="submit" value="Save Changes">
+    </div>
+  </form>
+{{ message }}
+</body>
+</html>

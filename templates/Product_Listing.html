@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auction Listings</title>
+    <style>
+body {
+	background-color: #f7f7f7;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	background-color: #0057a7;
+	color: white;
+	font-size: 32px;
+	padding: 20px;
+	margin: 0;
+	text-align: center;
+	text-shadow: 1px 1px #666;
+}
+h2 {
+    color: #0057a7;
+    text-align: center;
+    text-shadow: 1px 1px #666;
+}
+
+table {
+	border-collapse: collapse;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 50px auto;
+	width: 80%;
+}
+
+th, td {
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+th {
+	background-color: #0057a7;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+td img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: auto;
+}
+
+td h3 {
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+td p {
+	font-size: 16px;
+	line-height: 1.5;
+	margin-bottom: 10px;
+}
+
+td button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+td button:hover {
+	background-color: #3e8e41;
+}
+
+ #redirect-button {
+      background-color: #3e8e41;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    #redirect-button:hover {
+      background-color: #00467a;
+    }
+
+</style>
+
+    </head>
+<body>
+  <h1>Auction Listings</h1>
+  <button id="redirect-button" onclick="window.location.href='/gohome';">Go Home</button>
+  {% if listings %}
+  <table>
+    <thead>
+      <tr>
+          {% if seller %}
+          <th>Update Auction</th>
+          <th>Cancel Auction</th>
+          {% endif %}
+        <th>Seller Email</th>
+        <th>Listing ID</th>
+        <th>Category</th>
+        <th>Auction Title</th>
+        <th>Product Name</th>
+        <th>Product Description</th>
+        <th>Quantity</th>
+        {% if seller %}
+        <th>Reserve Price</th>
+            {% endif %}
+        <th>Max Bids</th>
+        <th>Status</th>
+        <th>Remaining Bids</th> <!--Added new column for Action-->
+      </tr>
+    </thead>
+    <tbody>
+      {% for listing in listings %}
+      <tr>
+      {% if seller and listing[9]==1 %}
+          <td>
+      <form action="/update/{{ listing[1] }}" method="get">
+        <button type="submit">Update</button>
+      </form>
+    </td>
+         <td>
+      <form action="/cancel/{{ listing[1] }}" method="get">
+        <button type="submit">Cancel</button>
+      </form>
+         </td>
+
+          {% endif %}
+      {% if seller and listing[9]!=1 %}
+      <td><p>NA</p>
+      <td><p>NA</p>
+      </td> {% endif %}
+        <td>{{ listing[0] }}</td>
+        <!--<td>{{ listing[1] }}</td>-->
+        <td>
+      <form action="/product/{{ listing[1] }}" method="get">
+        <button type="submit">{{ listing[1] }}</button>
+      </form>
+    </td>
+        <td>{{ listing[2] }}</td>
+        <td>{{ listing[3] }}</td>
+        <td>{{ listing[4] }}</td>
+        {% if seller %}
+        <td>{{ listing[5] }}</td>
+        {% endif %}
+        <td>{{ listing[6] }}</td>
+        <td>{{ listing[7] }}</td>
+        <td>{{ listing[8] }}</td>
+        <td class="{% if listing[9] == 1 %}status-available{% else %}status-unavailable{% endif %}">
+          {% if listing[9] == 1 %}Available{% else %}Unavailable{% endif %}
+        </td>
+        <!--<td><a href="/product/{{ listing[1] }}"><button class="listing-btn">View Product</button></a></td> -->
+      <td>
+          {{ listing[10] }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% else %}<h2>No Product Listings</h2>{% endif %}
+</body>
+</html>
+
+

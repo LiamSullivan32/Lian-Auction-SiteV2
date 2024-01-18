@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Profile</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      background-color: #0057a7;
+      color: white;
+      font-size: 32px;
+      padding: 20px;
+      margin: 0;
+      text-align: center;
+      text-shadow: 1px 1px #666;
+    }
+    table {
+      border-collapse: collapse;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 50px auto;
+      width: 80%;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #0057a7;
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    select, input[type="text"] {
+      width: 20%;
+      left: 100px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #e6e6e6;
+      margin-bottom: 10px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 20px auto 0;
+    }
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+    #redirect-button {
+      background-color: #3e8e41;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    #redirect-button:hover {
+      background-color: #00467a;
+    }
+  </style>
+</head>
+<body>
+  <button id="redirect-button" onclick="window.location.href='/gohome';">Go Home</button>
+  <h1>Update Profile</h1>
+  <form method="POST">
+    <div>
+      <label for="first_name">First Name:</label>
+      <input type="text" id="first_name" name="first_name">
+    </div>
+    <div>
+      <label for="last_name">Last Name:</label>
+      <input type="text" id="last_name" name="last_name">
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+    <div>
+      <label for="major">Major:</label>
+      <input type="text" id="major" name="major">
+    </div>
+    <input type="submit" value="Save Changes">
+  </form>
+
+  <h1>Current Profile</h1>
+<table>
+    {% for row in profile %}
+      <tr>
+
+        <td>{{ row }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+</body>
+
+
+</html>
+
+
+
